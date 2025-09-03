@@ -47,7 +47,7 @@ if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
   if [ -n "$SUDO_USER" ]; then
     DESKTOPUSER=$SUDO_USER
   fi
-  DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u "$DESKTOPUSER")/bus"
+  export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u "$DESKTOPUSER")/bus"
 fi
 
 # ---------------------------------------------------------------
