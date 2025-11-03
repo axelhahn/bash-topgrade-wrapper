@@ -27,7 +27,7 @@ _notify "Topgrade :: Start" "Starting OS update with topgrade..."
 
 params="--yes"
 topgrade --help | grep -q -- '--allow-root' && params+=" --allow-root"
-echo sudo topgrade $params
+sudo topgrade $params
 rc=$?
 
 _notify "Topgrade :: Done" "topgrade finished with rc=$rc" $rc
