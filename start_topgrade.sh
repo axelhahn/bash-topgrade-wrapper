@@ -12,6 +12,7 @@
 # ---------------------------------------------------------------
 # 2025-09-01  1.0  Initial version
 # 2025-11-03  1.1  use --allow-root for topgrade 16.1.x
+# 2025-11-03  1.2  no sudo for topgrade
 # ===============================================================
 
 # ---------------------------------------------------------------
@@ -25,9 +26,7 @@ which topgrade >/dev/null || exit 1
 # --- START
 _notify "Topgrade :: Start" "Starting OS update with topgrade..."
 
-params="--yes"
-topgrade --help | grep -q -- '--allow-root' && params+=" --allow-root"
-sudo topgrade $params
+topgrade --yes
 rc=$?
 
 _notify "Topgrade :: Done" "topgrade finished with rc=$rc" $rc
