@@ -61,6 +61,25 @@ If the script ends you get a notification again.
 * It is a disappearing notification on success or 
 * an error message on failure that stays on the screen until clicking on it.
 
+### 👹 Troubleshooting
+
+`topgrade`is started without sudo. 
+
+On my Manjaro installations it asked for a password even if my user had sudo to all commands without password.
+
+Solution: The installer `pamac`on Manjaro uses polkit. To allow pamac passwordless actions create a file **/etc/polkit-1/rules.d/99-pamac-override.rules**:
+
+```txt
+/*
+ * source: https://forum.manjaro.org/t/how-to-override-polkit-password-prompt-in-pamac/151774/2
+ */
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.manjaro.pamac.commit" && subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+    }
+})
+```
+
 ### 🕓 Cronjob
 
 Create a cronjob eg. as file in `/etc/cron.d/`.
